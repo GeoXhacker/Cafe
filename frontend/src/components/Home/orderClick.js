@@ -38,14 +38,27 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function FullScreenDialog() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState("");
+  const [spot, setSpot] = React.useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
+  function val(e) {
+    setValue(e.target.value);
+  }
+
   const handleClose = () => {
-    // axios
+    // axios(
+    //   {
+    //     method='post',
+    //     url: 'http://localhost:5000/makeorder'
+
+    //   }
+    //   )
     // dispatch({type: 'order/'})
+
     setOpen(false);
   };
 
@@ -93,9 +106,13 @@ export default function FullScreenDialog() {
           autoComplete="off"
           method="post"
         >
-          <Where />
-          <Hostel />
-          <Campus></Campus>
+          <Where
+            onChange={(e) => {
+              setSpot(e.target.innerText);
+            }}
+          />
+          {spot === "Hostel" && <Hostel />}
+          {spot === "Campus" && <Campus />}
           <TextField id="outlined-basic" label="Outlined" variant="outlined" />
         </form>
       </Dialog>

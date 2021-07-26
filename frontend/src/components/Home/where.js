@@ -5,13 +5,14 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import parse from "autosuggest-highlight/parse";
 import match from "autosuggest-highlight/match";
 
-export default function Highlights() {
+export default function Highlights(props) {
   return (
     <Autocomplete
       id="highlights-demo"
       style={{ width: "95%" }}
       options={place}
       getOptionLabel={(option) => option.name}
+      onChange={props.onChange}
       renderInput={(params) => (
         <TextField
           {...params}
