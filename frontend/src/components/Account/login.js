@@ -17,6 +17,7 @@ import Typography from "@material-ui/core/Typography";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import AlertDialogSlide from "./dialog";
 
 function CircularIndeterminate() {
@@ -78,9 +79,7 @@ export default function SignIn() {
   const [progress, setProgress] = useState(false);
   const [failed, setFailed] = useState(false);
 
-  // const inputCode = useSelector(selectCode);
-
-  // console.log(inputCode);
+  const dispatch = useDispatch();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -93,9 +92,6 @@ export default function SignIn() {
   function verifyNumber(code) {
     handleClose();
     setProgress(true);
-    // setTimeout(() => {
-    //   setProgress(true);
-    // }, 5000);
 
     console.log("verifying....");
     axios({
@@ -105,8 +101,10 @@ export default function SignIn() {
       .then((res) => {
         console.log(res, "verified");
         setProgress(false);
+        console.log(res.data.userInfo, "info");
+        dispatch({ type: "setToken", payload: res.data.token });
+        dispatch({ type: "userInfo", payload: res.data.userInfo });
         window.location.reload();
-        // handleClickOpen();
       })
       .catch((e) => {
         //// add dialog for verification failed, invalid code
@@ -148,12 +146,27 @@ export default function SignIn() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
+        {/* <Typography component="h5" variant="h5">
+          Login
+        </Typography> */}
+        <Typography
+          component="h1"
+          variant="h5"
+          style={{
+            fontSize: "1.25rem",
+            fontWeight: "bold",
+            lineHeight: 3,
+
+            fontFamily: "Montserrat",
+          }}
+        >
+          D's Cafe
         </Typography>
+
+        {/* <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar> */}
+
         <form className={classes.form}>
           <TextField
             variant="outlined"
@@ -221,7 +234,7 @@ export default function SignIn() {
       <Box mt={8}>
         <Copyright />
       </Box>
-      <CircularIndeterminate />
+      {/* <CircularIndeterminate /> */}
       <AlertDialogSlide
         open={open}
         handleClose={handleClose}

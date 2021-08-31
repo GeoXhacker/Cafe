@@ -1,9 +1,9 @@
 /* eslint-disable no-use-before-define */
-import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import parse from "autosuggest-highlight/parse";
 import match from "autosuggest-highlight/match";
+import parse from "autosuggest-highlight/parse";
+import React from "react";
 
 export default function Highlights(props) {
   return (
@@ -19,6 +19,8 @@ export default function Highlights(props) {
           label="Where you at?"
           variant="outlined"
           margin="normal"
+          error={props.error}
+          helperText={props.helperText}
         />
       )}
       renderOption={(option, { inputValue }) => {

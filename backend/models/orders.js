@@ -9,10 +9,13 @@ let orderSchema = mongoose.Schema(
     },
     item: { type: String, required: true },
     quantity: { type: Number, required: true },
+    cost: { type: Number, required: true },
     url: { type: String },
-    details: {
-      where: String,
+    address: {
+      where: { type: String, required: true },
+      locale: { type: String, required: true },
     },
+    status: { type: String, default: "pending" },
   },
   { timestamps: true }
 );

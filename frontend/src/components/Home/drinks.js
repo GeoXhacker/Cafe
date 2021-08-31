@@ -47,28 +47,8 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function MediaCard() {
+export default function Drinks() {
   const items = [
-    {
-      name: "Chips",
-      price: 3000,
-      img: "/chips.jpg",
-    },
-    {
-      name: "Pilao & Beef",
-      price: 2500,
-      img: "/pilao.jpg",
-    },
-    {
-      name: "Chips & Chickhen",
-      price: 7000,
-      img: "/chips n chickhen.jpg",
-    },
-    {
-      name: "Pilao",
-      price: 2000,
-      img: "/pilao_plain.jpg",
-    },
     {
       name: "Juice",
       price: 1000,
@@ -80,8 +60,8 @@ export default function MediaCard() {
       img: "/ice_cream.jpg",
     },
     {
-      name: "Hehe",
-      price: 2600,
+      name: "Mineral water",
+      price: 1000,
     },
     {
       name: "Hehe",
@@ -213,9 +193,6 @@ function Item(props) {
                 setOpen(!open);
                 console.log("close", open);
               }}
-              itemPrice={props.item.price}
-              itemName={props.item.name}
-              itemImg={props.item.img}
             />
           </Info>
         </Box>

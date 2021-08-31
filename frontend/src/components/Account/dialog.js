@@ -16,7 +16,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function AlertDialogSlide(props) {
   const [open, setOpen] = React.useState(false);
-  const [code, setCode] = React.useState("");
 
   const dispatch = useDispatch();
   const inputCode = useSelector(selectCode);

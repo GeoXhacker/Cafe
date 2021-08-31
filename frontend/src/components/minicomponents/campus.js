@@ -1,23 +1,27 @@
 /* eslint-disable no-use-before-define */
-import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import parse from "autosuggest-highlight/parse";
 import match from "autosuggest-highlight/match";
+import parse from "autosuggest-highlight/parse";
+import React from "react";
 
-export default function Highlights() {
+export default function Highlights(props) {
   return (
     <Autocomplete
       id="highlights-demo"
       style={{ width: "95%" }}
       options={block}
       getOptionLabel={(option) => option.title}
+      onChange={props.onChange}
+      error={props.error}
       renderInput={(params) => (
         <TextField
           {...params}
           label="Select Campus location"
           variant="outlined"
           margin="normal"
+          error={props.error}
+          helperText={props.helperText}
         />
       )}
       renderOption={(option, { inputValue }) => {

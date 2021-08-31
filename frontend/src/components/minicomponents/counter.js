@@ -7,7 +7,7 @@ import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCounter } from "../../store";
+import { selectQuantity } from "../../store";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,7 +28,7 @@ export default function BadgeVisibility() {
   const [invisible, setInvisible] = React.useState(false);
 
   const dispatch = useDispatch();
-  const number = useSelector(selectCounter);
+  const number = useSelector(selectQuantity);
 
   const handleBadgeVisibility = () => {
     setInvisible(!invisible);
@@ -37,7 +37,7 @@ export default function BadgeVisibility() {
   return (
     <Grid container spacing={2} justify="space-between">
       <Grid>
-        <Typography>Quantity</Typography>
+        <Typography>quantity</Typography>
       </Grid>
       <Grid>
         {/* <Badge color="primary" badgeContent={count}></Badge> */}
@@ -46,18 +46,14 @@ export default function BadgeVisibility() {
       <Grid>
         <ButtonGroup>
           <Button
-          // aria-label="reduce"
-          // onClick={() => {
-          //   setCount(Math.max(count - 1, 0));
-          // }}
+            onClick={() => {
+              dispatch({ type: "decrement" });
+            }}
           >
             <RemoveIcon fontSize="small" />
           </Button>
           <Button
             aria-label="increase"
-            // onClick={() => {
-            //   setCount(count + 1);
-            // }}
             onClick={() => dispatch({ type: "increment" })}
           >
             <AddIcon fontSize="small" />

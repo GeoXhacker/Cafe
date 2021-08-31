@@ -70,7 +70,9 @@ exports.verify = function (req, res, next) {
         console.log(user, "user exists");
         var token = jwt.sign({ id: user._id }, "d's cafe");
         console.log(token);
+
         wait(3000);
+
         res.json({
           message: "Authentication succeeded",
           token,

@@ -15,6 +15,7 @@
     "google-libphonenumber": "^3.2.22",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^8.5.1",
+    "moment-timezone": "^0.5.33",
     "mongoose": "^5.12.14",
     "morgan": "~1.9.1",
     "randomatic": "^3.1.1",

@@ -6,15 +6,20 @@ import App from "./App";
 import "./App.css";
 import reportWebVitals from "./reportWebVitals";
 import { persistor, store } from "./store";
+import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
+import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+import themeFile from "./theme";
+const theme = createMuiTheme(themeFile);
 
 ReactDOM.render(
   // <React.StrictMode>
-
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <App />
-    </PersistGate>
-  </Provider>,
+  <MuiThemeProvider theme={theme} className="app">
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
+    </Provider>
+  </MuiThemeProvider>,
   // </React.StrictMode>
   document.getElementById("root")
 );

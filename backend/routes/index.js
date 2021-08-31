@@ -1,9 +1,11 @@
 var express = require("express");
 var router = express.Router();
-const { validationResult, body } = require("express-validator");
+const { validationResult, body, check } = require("express-validator");
 const { PhoneNumberUtil } = require("google-libphonenumber");
+const authMiddleWare = require("../middlewares/orders.js");
 
 const AuthController = require("../controllers/auth");
+const OrderController = require("../controllers/orders");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -13,6 +15,14 @@ router.get("/", function (req, res, next) {
 // router.route("/signin").post(AuthController.authenticate);
 
 router.get("/verify/:phone/:code", AuthController.verify);
+
+router.post(
+  "/makeorder",
+  check("address.where", "please fill ur location").trim().not().isEmpty(),
+  check("address.locale", "please fill this field").trim().not().isEmpty(),
+  authMiddleWare,
+  OrderController.makeOrder
+);
 
 router.post(
   "/signin", // username must be an email

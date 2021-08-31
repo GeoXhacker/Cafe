@@ -1,0 +1,15 @@
+{
+  "search.exclude": {
+    "**/node_modules": true
+  },
+  "launch": {
+    "configurations": [],
+    "compounds": []
+  },
+  "[json]": {
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.suggest.insertMode": "replace"
+  }
+}

@@ -1,25 +1,14 @@
-import {
-  Avatar,
-  Card,
-  CardContent,
-  CardHeader,
-  Drawer,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from "@material-ui/core";
+import { Drawer } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import MailIcon from "@material-ui/icons/Mail";
 import MenuIcon from "@material-ui/icons/Menu";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { selectToken, selectUserInfo } from "../../store";
 import Login from "../Account/login";
 
 const useStyles = makeStyles((theme) => ({
@@ -48,6 +37,9 @@ export default function ButtonAppBar() {
   const classes = useStyles();
   const [state, setState] = useState(false);
   const [accountState, setAccountState] = useState(false);
+  const token = useSelector(selectToken);
+  const user = useSelector(selectUserInfo);
+
   const toggleLogin = (open) => (e) => {
     setState(open);
   };
@@ -71,7 +63,7 @@ export default function ButtonAppBar() {
             D's Cafe
           </Typography>
           <Button color="inherit" onClick={toggleLogin(true)}>
-            Login
+            {user ? user.username : Login}
           </Button>
           <Drawer anchor="right" open={state} onClose={toggleLogin(false)}>
             <Login />
